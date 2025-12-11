@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eda için — Sürpriz</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ff4d6d;--text:#e6eef8}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071025 0%,var(--bg)100%);color:var(--text);display:grid;place-items:center;padding:24px}
+    .card{width:min(880px,96%);background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.03));border-radius:20px;padding:28px;box-shadow:0 10px 40px rgba(2,6,23,0.6);position:relative;overflow:hidden}
+    header{display:flex;gap:18px;align-items:center}
+    .avatar{width:96px;height:96px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#ff9aa4);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px}
+    h1{margin:0;font-size:28px}
+    p.lead{margin:6px 0 18px;opacity:0.9}
+    .big-msg{font-size:20px;margin:18px 0;padding:18px;background:rgba(255,77,109,0.06);border-radius:12px}
+    .row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+    .muted{opacity:0.7;font-size:13px}
+    footer{margin-top:18px;font-size:13px;color:rgba(230,238,248,0.7)}
+    .note{margin-top:14px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02)}
+
+    /* little confetti */
+    canvas.confetti{position:absolute;inset:0;pointer-events:none}
+
+    /* printable notecard area */
+    .print-card{margin-top:20px;background:linear-gradient(180deg,#071026, #071226);padding:16px;border-radius:12px}
+    .print-card pre{white-space:pre-wrap;word-break:break-word;margin:0}
+
+    @media(print){body{background:white;color:black} .card{box-shadow:none;border-radius:0} .btn{display:none}}
+  </style>
+</head>
+<body>
+  <div class="card" id="mainCard">
+    <canvas class="confetti" id="confetti"></canvas>
+    <header>
+      <div class="avatar" id="avatar">E</div>
+      <div>
+        <h1>Eda'ya Özel — Sürpriz Sayfası</h1>
+        <p class="lead">Bu sayfa QR'dan açıldığında Eda için kişisel, hızlı ve etkileyici bir kutlama sunar. (İçeriği dilediğin gibi değiştir.)</p>
+      </div>
+    </header>
+
+    <section class="big-msg" id="message">
+      Sevgili Eda,<br>
+      Bugün senin günün. Gülüşün, inatçılığın ve bana hissettirdiklerin için teşekkürler. İyi ki doğdun ❤️
+    </section>
+
+    <div class="row">
+      <a class="btn" id="playSong" href="#">🎵 Şarkıyı Çal</a>
+      <a class="btn" id="more" href="#details">🎁 Sürpriz</a>
+      <div class="muted">Sayfa: <span id="sitePath">www.github.io/REPLACE_GITHUB_USERNAME</span></div>
+    </div>
+
+    <div class="note" id="secretNote">
+      <strong>Not:</strong> Bu tek sayfalık HTML'i repo'nun köküne `index.html` adıyla koyduğunda GitHub Pages otomatik olarak aktif olur ve adres şu şekilde olacak: <em>https://REPLACE_GITHUB_USERNAME.github.io</em>
+    </div>
+
+    <div class="print-card" id="printable">
+      <strong>Yazdırılacak not (QR kağıdına koy):</strong>
+      <pre id="printText">Sevgili Eda,
+
+Sana özel küçük bir sürprizim var — QR'ı okuttuğunda bir sayfa açılacak. Kutlamamızın küçük, tatlı ve sadece sana özel olmasını istedim.
+
+Sevgiler,
+
+(Benim adım)</pre>
+    </div>
+
+    <footer>
+      İstersen bu sayfayı daha da kişiselleştirebilirim: fotoğraf, şarkı (YouTube linki), daha uzun mesaj veya gizli bir not ekleyebilirim.
+    </footer>
+  </div>
+
+  <script>
+    // small confetti (no libs)
+    const c = document.getElementById('confetti');
+    const ctx = c.getContext('2d');
+    function resize(){c.width = innerWidth; c.height = innerHeight}
+    addEventListener('resize', resize); resize();
+
+    const confs = [];
+    const colors = ['#ff4d6d','#ffb86b','#ffd166','#9be15d','#60d6ff'];
+    for(let i=0;i<120;i++) confs.push({x:Math.random()*c.width,y:Math.random()*-c.height,vy:1+Math.random()*3,rx:Math.random()*6,ry:Math.random()*8,color:colors[i%colors.length],r:2+Math.random()*6,rot:Math.random()*6});
+    function draw(){ctx.clearRect(0,0,c.width,c.height); for(const p of confs){p.y += p.vy; p.x += Math.sin(p.y/50+p.rot)*0.6; ctx.save(); ctx.translate(p.x,p.y); ctx.rotate((p.y/50)); ctx.fillStyle = p.color; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6); ctx.restore(); if(p.y>c.height+20){p.y = -20; p.x = Math.random()*c.width}} requestAnimationFrame(draw)} draw();
+
+    // play song button (replace the URL below in the HTML file if you want)
+    const playBtn = document.getElementById('playSong');
+    const songUrl = 'REPLACE_SONG_URL'; // example: https://www.youtube.com/watch?v=XXXXXXXX
+    playBtn.addEventListener('click', e=>{e.preventDefault(); if(!songUrl || songUrl==='REPLACE_SONG_URL'){ alert('Şarkı URL'i ayarlı değil — HTML içinde REPLACE_SONG_URL kısmını YouTube linki ile değiştir.'); return } window.open(songUrl,'_blank')});
+
+    // quick printable area: copy message into printText for a themed small note (already filled)
+    // small personalization: replace sitePath text based on runtime (if repo known)
+    (function(){
+      const pathEl = document.getElementById('sitePath');
+      const defaultPath = 'www.github.io/REPLACE_GITHUB_USERNAME';
+      pathEl.textContent = defaultPath;
+    })();
+  </script>
+</body>
+</html>
