@@ -1,0 +1,307 @@
+:root {
+    --bg-color: #050510; /* Çok koyu gece mavisi/siyah */
+    --text-color: #e0e0e0;
+    --accent-color: #d4af37; /* Altın */
+    --accent-light: #f3e5ab;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Zen Old Mincho', serif; /* Biraz daha klasik ve şık */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* Utilities */
+.full-screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: radial-gradient(circle at center, #1a1a2e 0%, #050510 100%);
+    text-align: center;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.main-title .highlight {
+    color: var(--accent-color);
+    font-size: 4.5rem;
+    display: block;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-top: 1rem;
+    font-style: italic;
+    color: var(--accent-light);
+}
+
+.scroll-indicator {
+    margin-top: 4rem;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator .text {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.scroll-indicator .arrow {
+    font-size: 1.5rem;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* Content Container */
+.content-container {
+    max-width: 800px; /* Tablet/Desktop için sınır */
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Chapter Header */
+.chapter-header {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.chapter-header h2 {
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+}
+
+/* Chapter Sections */
+.chapter {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 6rem;
+    opacity: 0; /* JS ile görünür olacak */
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+
+.chapter.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-block {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 2rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.text-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-light);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+}
+
+.traits {
+    list-style: none;
+}
+
+.traits li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.traits li::before {
+    content: '•';
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+}
+
+.media-block {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    background: #000;
+    position: relative;
+    /* Aspect ratio koruması için */
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memory-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.placeholder-media {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(45deg, #1a1a2e, #2a2a4e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.2);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+/* Finale */
+.finale {
+    background: radial-gradient(circle at center, #2a1a1a 0%, #050510 100%);
+    text-align: center;
+    padding: 2rem;
+}
+
+.note-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+}
+
+.note-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.note-content p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.signature {
+    margin-top: 2rem;
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--accent-light);
+}
+
+/* Animations */
+.fade-in-up {
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+.fade-in {
+    animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive Overrides for Large Screens (Desktop Zig-Zag) */
+@media (min-width: 768px) {
+    .chapter {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .chapter.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .text-block, .media-block {
+        flex: 1;
+    }
+
+    .main-title {
+        font-size: 5rem;
+    }
+}
+
+/* Mobile Adjustments (iPhone 16 Pro Max specific tweaks) */
+@media (max-width: 450px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    .main-title .highlight {
+        font-size: 4rem;
+    }
+    .chapter {
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+    }
+    .text-block {
+        padding: 1.5rem;
+    }
+    .media-block {
+        /* Dikey video/fotoğraf için daha uzun */
+        min-height: 400px; 
+    }
+}
