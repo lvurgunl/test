@@ -1,76 +1,169 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seni Çok Seviyorum EDA (Basitleştirilmiş)</title>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seni Çok Seviyorum EDA</title>
 
-<body style="font-family: sans-serif; background-color: #000; color: #fff;">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Pinyon+Script&display=swap"
+        rel="stylesheet">
 
-    <audio id="bg-music" loop autoplay>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Password Gate (Overlay) -->
+    <div id="password-gate" class="gate-overlay">
+        <div class="intro-content">
+            <div class="heart-icon">❤️</div>
+            <h2>Hoşgeldin Sevgilim</h2>
+            <p class="poetic-text">Seninle hikayemiz ne zaman başladı?</p>
+
+            <div class="input-wrapper">
+                <input type="text" id="date-input" placeholder="GG.AA.YYYY" autocomplete="off">
+                <span class="focus-border"></span>
+            </div>
+
+            <button id="unlock-btn">Kilidi Aç</button>
+            <p id="error-msg" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
         <source src="assets/nunslt.mp3" type="audio/mp3">
-        Tarayıcınız ses etiketini desteklemiyor.
     </audio>
 
-    <section style="text-align: center; padding: 100px 20px;">
-        <h1 style="font-size: 3em; color: #ff2e63;">Seni Çok Seviyorum<br><span style="font-size: 1.5em; display: block;">EDAM</span></h1>
-        <p style="font-size: 1.2em; color: #08d9d6; margin-top: 10px;">4 Temmuz 2025</p>
-        <div style="margin-top: 50px;">
-            <span style="display: block; font-size: 0.9em;">Hediyeni Gör</span>
-            <div style="font-size: 1.5em; color: #ff2e63;">↓</div>
+    <!-- Music Control FAB -->
+    <div id="music-fab" class="music-fab" style="display: none;">
+        <span id="music-icon">🎵</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero full-screen">
+        <div class="hero-content fade-in-up">
+            <h1 class="main-title">Seni Çok Seviyorum<br><span class="highlight">EDAM</span></h1>
+            <p class="subtitle">4 Temmuz 2025</p>
+
+            <div class="scroll-indicator">
+                <span class="text">Hediyeni Gör</span>
+                <div class="arrow">↓</div>
+            </div>
         </div>
+        <div class="hero-overlay"></div>
     </section>
 
-    <main style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <!-- Content Container -->
+    <main class="content-container">
 
-        <header style="text-align: center; margin: 40px 0; padding: 20px; border-top: 1px solid #333; border-bottom: 1px solid #333;">
-            <h2 style="font-size: 2em; color: #ff2e63;">📘 E D A K İ T A B I</h2>
+        <!-- Book Header -->
+        <header class="chapter-header fade-in">
+            <h2>📘 E D A K İ T A B I</h2>
         </header>
 
-        <section style="margin-bottom: 60px; padding: 20px; border: 1px solid #222; border-radius: 10px;">
-            <div style="margin-bottom: 20px;">
-                <h3 style="font-size: 1.5em; color: #08d9d6; margin-bottom: 15px;">💭 Eda Kıskandığında</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 8px;">• Belli eder.</li>
-                    <li style="margin-bottom: 8px;">• Gizlemez, saklamaz.</li>
-                    <li style="margin-bottom: 8px;">• Net olur, lafını dolandırmaz.</li>
-                    <li style="margin-bottom: 8px;">• Çünkü önemsediği şeylerde geri durmaz.</li>
+        <!-- Chapter 1: Sinirlendiğinde -->
+        <section class="chapter fade-in-on-scroll" id="chapter-1">
+            <div class="text-block">
+                <h3>💢 Eda Sinirlendiğinde</h3>
+                <ul class="traits">
+                    <li>Bağırır, çağırır.</li>
+                    <li>İçinde tutmaz, ne hissediyorsa söyler.</li>
+                    <li>Uzakta durmaz, tam tersine üstüne gelir.</li>
+                    <li>Ama sinirinin altında hep kırgınlık vardır.</li>
                 </ul>
             </div>
-            <div style="text-align: center;">
-                <video controls loop muted style="width: 100%; max-width: 600px; border-radius: 10px;">
+            <div class="media-block">
+                <!-- Video 1 -->
+                <video class="memory-video" loop muted playsinline poster="">
+                    <source src="assets/video1.mp4" type="video/mp4">
+                    Tarayıcınız video etiketini desteklemiyor.
+                </video>
+            </div>
+        </section>
+
+        <!-- Chapter 2: Güldüğünde -->
+        <section class="chapter reverse fade-in-on-scroll" id="chapter-2">
+            <div class="text-block">
+                <h3>💚 Eda Güldüğünde</h3>
+                <ul class="traits">
+                    <li>Güldüğünde ortam değişir.</li>
+                    <li>Bir anda her şey daha hafif gelir.</li>
+                    <li>Bazen durduk yere güler ya…</li>
+                    <li>İşte o anlar insanın aklında kalır.</li>
+                </ul>
+            </div>
+            <div class="media-block">
+                <!-- Placeholder for future video/photo -->
+                <div class="placeholder-media">
+                    <span>Gülüşün...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3: Kıskandığında -->
+        <section class="chapter fade-in-on-scroll" id="chapter-3">
+            <div class="text-block">
+                <h3>💭 Eda Kıskandığında</h3>
+                <ul class="traits">
+                    <li>Belli eder.</li>
+                    <li>Gizlemez, saklamaz.</li>
+                    <li>Net olur, lafını dolandırmaz.</li>
+                    <li>Çünkü önemsediği şeylerde geri durmaz.</li>
+                </ul>
+            </div>
+            <div class="media-block">
+                <!-- Video 2 -->
+                <video class="memory-video" loop muted playsinline poster="">
                     <source src="assets/video2.mp4" type="video/mp4">
                     Tarayıcınız video etiketini desteklemiyor.
                 </video>
             </div>
         </section>
 
-        <section style="margin-bottom: 60px; padding: 20px; border: 1px solid #222; border-radius: 10px;">
-            <div style="margin-bottom: 20px;">
-                <h3 style="font-size: 1.5em; color: #08d9d6; margin-bottom: 15px;">❤️ Eda Aşık Olduğunda</h3>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 8px;">• Hafife almaz.</li>
-                    <li style="margin-bottom: 8px;">• Detayları unutmayanlardandır.</li>
-                    <li style="margin-bottom: 8px;">• Kolay bağlanmaz…</li>
-                    <li style="margin-bottom: 8px;">• Ama bağlandı mı yarım kalmaz.</li>
+        <!-- Chapter 4: Aşık Olduğunda -->
+        <section class="chapter reverse fade-in-on-scroll" id="chapter-4">
+            <div class="text-block">
+                <h3>❤️ Eda Aşık Olduğunda</h3>
+                <ul class="traits">
+                    <li>Hafife almaz.</li>
+                    <li>Detayları unutmayanlardandır.</li>
+                    <li>Kolay bağlanmaz…</li>
+                    <li>Ama bağlandı mı yarım kalmaz.</li>
                 </ul>
-                <p style="margin-top: 15px; color: #08d9d6; text-align: center; border-top: 1px solid #333; padding-top: 10px;">seninle ilk bakışma tarihimiz: 04.07.2025</p>
+                <p class="special-date-note">seninle ilk bakışma tarihimiz: 04.07.2025</p>
+            </div>
+            <div class="media-block">
+                <!-- Placeholder for future video/photo -->
+                <div class="placeholder-media">
+                    <span>Bize Dair...</span>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <section style="padding: 100px 20px; text-align: center; background-color: #111;">
-        <div style="max-width: 400px; margin: 0 auto; padding: 30px; border-radius: 10px; background-color: #222;">
-            <h3 style="color: #ff2e63; margin-bottom: 20px;">🎂 Doğum Günü Notu</h3>
-            <p style="margin-bottom: 10px;">Bugün senin günün.</p>
-            <p style="margin-bottom: 10px;">Hayat sana biraz daha güzel davransın.</p>
-            <p style="margin-bottom: 10px;">Yüzün daha çok gülsün.</p>
-            <p style="margin-bottom: 10px;">Ben de o gülüşlerin sebebi olayım.</p>
-            <p style="margin-top: 20px; color: #08d9d6; font-size: 1.2em;">Seni Seven Sevgilin</p>
+    <!-- Final Note Section -->
+    <section class="finale full-screen fade-in-on-scroll">
+        <div class="note-card">
+            <h3>🎂 Doğum Günü Notu</h3>
+            <div class="note-content">
+                <p>Bugün senin günün.</p>
+                <p>Hayat sana biraz daha güzel davransın.</p>
+                <p>Yüzün daha çok gülsün.</p>
+                <p>Ben de o gülüşlerin sebebi olayım.</p>
+            </div>
+            <p class="signature">Seni Seven Sevgilin</p>
         </div>
     </section>
 
+    <script src="script.js"></script>
 </body>
+
+
 </html>
