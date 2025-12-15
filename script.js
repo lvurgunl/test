@@ -23,13 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkDate() {
         const inputVal = dateInput.value.trim();
         
-        // Burası sadece kabul edilen tarih listesine bakacak.
         if (acceptedVariations.includes(inputVal)) {
             // Şifre Doğru -> Kilidi Aç ve Müziği Başlat
             gateOverlay.classList.add('hidden');
             document.body.classList.add('unlocked');
 
-            // Müzik Başlat
+            // Müzik Başlat (Kullanıcı etkileşimi olduğu için tarayıcı izin verecektir)
             if (bgMusic) {
                 bgMusic.volume = 0.5; // Ses seviyesi
                 bgMusic.play().then(() => {
@@ -96,35 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(section);
     });
 
-
-    // 2. Video Autoplay Logic (Performans için Eşik Düşürüldü: 0.1)
-    const videoObserverOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Daha ekrana girmeden oynamaya başlaması için eşik düşürüldü.
-    };
-
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-
-            if (entry.isIntersecting) {
-                // Oynatma komutunu try/catch içine alıyoruz.
-                try {
-                    video.play();
-                } catch (error) {
-                    console.log("Otomatik oynatma engellendi:", error);
-                }
-            } else {
-                // Ekrandan çıktıysa durdur.
-                video.pause();
-            }
-        });
-    }, videoObserverOptions);
-
-    const videos = document.querySelectorAll('video');
-    videos.forEach(video => {
-        videoObserver.observe(video);
-    });
+    // NOT: Harici (Google Drive) video kullandığımız için yerel video oynatma mantığı (Video Autoplay Logic) kaldırılmıştır.
 
 });
