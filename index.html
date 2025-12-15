@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Seni Çok Seviyorum EDA</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,7 +17,6 @@
 
 <body>
 
-    <!-- Password Gate (Overlay) -->
     <div id="password-gate" class="gate-overlay">
         <div class="intro-content">
             <div class="heart-icon">❤️</div>
@@ -35,17 +33,14 @@
         </div>
     </div>
 
-    <!-- Background Music -->
-    <audio id="bg-music" loop>
-        <source src="assets/nunslt.mp3" type="audio/mp3">
+    <audio id="bg-music" loop preload="auto">
+        <source src="nunslt.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Music Control FAB -->
     <div id="music-fab" class="music-fab" style="display: none;">
         <span id="music-icon">🎵</span>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero full-screen">
         <div class="hero-content fade-in-up">
             <h1 class="main-title">Seni Çok Seviyorum<br><span class="highlight">EDAM</span></h1>
@@ -59,15 +54,12 @@
         <div class="hero-overlay"></div>
     </section>
 
-    <!-- Content Container -->
     <main class="content-container">
 
-        <!-- Book Header -->
         <header class="chapter-header fade-in">
             <h2>📘 E D A K İ T A B I</h2>
         </header>
 
-        <!-- Chapter 1: Sinirlendiğinde -->
         <section class="chapter fade-in-on-scroll" id="chapter-1">
             <div class="text-block">
                 <h3>💢 Eda Sinirlendiğinde</h3>
@@ -79,15 +71,12 @@
                 </ul>
             </div>
             <div class="media-block">
-                <!-- Video 1 -->
-                <video class="memory-video" loop muted playsinline poster="">
-                    <source src="assets/video1.mp4" type="video/mp4">
-                    Tarayıcınız video etiketini desteklemiyor.
-                </video>
+                <div class="placeholder-media">
+                    <span>Senin Haller...</span>
+                </div>
             </div>
         </section>
 
-        <!-- Chapter 2: Güldüğünde -->
         <section class="chapter reverse fade-in-on-scroll" id="chapter-2">
             <div class="text-block">
                 <h3>💚 Eda Güldüğünde</h3>
@@ -99,14 +88,12 @@
                 </ul>
             </div>
             <div class="media-block">
-                <!-- Placeholder for future video/photo -->
-                <div class="placeholder-media">
+                 <div class="placeholder-media">
                     <span>Gülüşün...</span>
                 </div>
             </div>
         </section>
 
-        <!-- Chapter 3: Kıskandığında -->
         <section class="chapter fade-in-on-scroll" id="chapter-3">
             <div class="text-block">
                 <h3>💭 Eda Kıskandığında</h3>
@@ -118,15 +105,13 @@
                 </ul>
             </div>
             <div class="media-block">
-                <!-- Video 2 -->
-                <video class="memory-video" loop muted playsinline poster="">
-                    <source src="assets/video2.mp4" type="video/mp4">
+                <video class="memory-video" autoplay loop muted playsinline>
+                    <source src="video2.mp4" type="video/mp4">
                     Tarayıcınız video etiketini desteklemiyor.
                 </video>
             </div>
         </section>
 
-        <!-- Chapter 4: Aşık Olduğunda -->
         <section class="chapter reverse fade-in-on-scroll" id="chapter-4">
             <div class="text-block">
                 <h3>❤️ Eda Aşık Olduğunda</h3>
@@ -139,7 +124,6 @@
                 <p class="special-date-note">seninle ilk bakışma tarihimiz: 04.07.2025</p>
             </div>
             <div class="media-block">
-                <!-- Placeholder for future video/photo -->
                 <div class="placeholder-media">
                     <span>Bize Dair...</span>
                 </div>
@@ -148,7 +132,6 @@
 
     </main>
 
-    <!-- Final Note Section -->
     <section class="finale full-screen fade-in-on-scroll">
         <div class="note-card">
             <h3>🎂 Doğum Günü Notu</h3>
@@ -164,6 +147,4 @@
 
     <script src="script.js"></script>
 </body>
-
-
 </html>
