@@ -1,110 +1,201 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Eda</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Seni Çok Seviyorum EDA</title>
 
-  <!-- iOS / Safari uyum -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Pinyon+Script&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(180deg, #0f0f14, #000);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<style>
+/* === ROOT & RESET === */
+:root{
+--primary:#ff2e63;
+--secondary:#08d9d6;
+--bg:#000;
+--glass:rgba(255,255,255,.08);
+--border:rgba(255,255,255,.1);
+--text:#fff;
+}
 
-    .container {
-      width: 100%;
-      max-width: 720px;
-      padding: 24px 16px 48px;
-      text-align: center;
-    }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+background:var(--bg);
+color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+overflow:hidden;
+}
+body.unlocked{overflow-y:auto}
 
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      letter-spacing: 0.3px;
-    }
+/* === GATE === */
+.gate-overlay{
+position:fixed;inset:0;
+background:#000;
+z-index:1000;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:opacity 1s ease;
+}
+.gate-overlay.hidden{opacity:0;pointer-events:none}
+.intro-content{
+background:var(--glass);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+border-radius:30px;
+padding:3rem;
+text-align:center;
+animation:float 6s infinite;
+}
+@keyframes float{50%{transform:translateY(-10px)}}
+.heart-icon{font-size:4rem;color:var(--primary);animation:beat 1.5s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+input{
+background:none;border:none;
+border-bottom:1px solid #555;
+color:#fff;
+font-size:1.4rem;
+text-align:center;
+outline:none;
+margin:1rem 0;
+}
+button{
+background:var(--primary);
+border:none;
+border-radius:30px;
+padding:12px 40px;
+color:#fff;
+cursor:pointer;
+}
 
-    p {
-      font-size: 1rem;
-      opacity: 0.85;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
+/* === HERO === */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.main-title{font-size:3.5rem}
+.highlight{color:var(--primary);font-size:4.5rem}
 
-    .video-box {
-      margin-bottom: 32px;
-    }
+/* === CONTENT === */
+.content-container{max-width:900px;margin:auto;padding:2rem}
+.chapter{margin:6rem 0;display:flex;flex-direction:column;gap:2rem;opacity:0;transform:translateY(40px);transition:1s}
+.chapter.visible{opacity:1;transform:none}
+.text-block{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:2rem}
+.media-block{
+background:#000;
+border-radius:20px;
+overflow:hidden;
+border:1px solid var(--border);
+}
 
-    video {
-      width: 100%;
-      max-width: 100%;
-      border-radius: 18px;
-      background: #000;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-    }
+/* === VIDEO (iOS SAFE) === */
+video{
+width:100%;
+display:block;
+border-radius:20px;
+background:#000;
+}
 
-    footer {
-      margin-top: 40px;
-      font-size: 0.85rem;
-      opacity: 0.5;
-    }
-  </style>
+/* === FOOTER === */
+footer{text-align:center;opacity:.6;margin:4rem 0}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Eda</h1>
-    <p>
-      Bazı şeyler anlatılmaz…<br>
-      İzlenir, hissedilir.
-    </p>
 
-    <!-- VIDEO 1 -->
-    <div class="video-box">
-      <video
-        controls
-        playsinline
-        webkit-playsinline
-        preload="metadata"
-      >
-        <source src="video2.mp4" type="video/mp4">
-        Tarayıcın bu videoyu desteklemiyor.
-      </video>
-    </div>
+<!-- PASSWORD -->
+<div id="password-gate" class="gate-overlay">
+<div class="intro-content">
+<div class="heart-icon">❤️</div>
+<h2>Hoşgeldin Sevgilim</h2>
+<p>Hikayemiz ne zaman başladı?</p>
+<input id="date-input" placeholder="GG.AA.YYYY">
+<button id="unlock-btn">Kilidi Aç</button>
+<p id="error-msg"></p>
+</div>
+</div>
 
-    <!-- VIDEO 2 -->
-    <div class="video-box">
-      <video
-        controls
-        playsinline
-        webkit-playsinline
-        preload="metadata"
-      >
-        <source src="eda3.mp4" type="video/mp4">
-        Tarayıcın bu videoyu desteklemiyor.
-      </video>
-    </div>
+<audio id="bg-music" loop>
+<source src="nunslt.mp3" type="audio/mp3">
+</audio>
 
-    <footer>
-      ❤️
-    </footer>
-  </div>
+<section class="hero">
+<div>
+<h1 class="main-title">Seni Çok Seviyorum<br><span class="highlight">EDAM</span></h1>
+<p>4 Temmuz 2025</p>
+</div>
+</section>
+
+<main class="content-container">
+
+<!-- CHAPTER 1 -->
+<section class="chapter">
+<div class="text-block">
+<h3>💢 Eda Sinirlendiğinde</h3>
+<ul>
+<li>Bağırır, çağırır.</li>
+<li>Net olur.</li>
+<li>Kırgınlığı saklamaz.</li>
+</ul>
+</div>
+<div class="media-block">
+<video controls playsinline webkit-playsinline preload="metadata">
+<source src="video2.mp4" type="video/mp4">
+</video>
+</div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter">
+<div class="text-block">
+<h3>💚 Eda Güldüğünde</h3>
+<p>Her şey hafifler.</p>
+</div>
+<div class="media-block">
+<img src="eda2.png" style="width:100%">
+</div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter">
+<div class="text-block">
+<h3>💭 Eda Kıskandığında</h3>
+<p>Gizlemez. Çünkü önemsiyor.</p>
+</div>
+<div class="media-block">
+<video controls playsinline webkit-playsinline preload="metadata">
+<source src="eda3.mp4" type="video/mp4">
+</video>
+</div>
+</section>
+
+</main>
+
+<footer>❤️</footer>
+
+<script>
+const gate=document.getElementById("password-gate");
+const btn=document.getElementById("unlock-btn");
+const input=document.getElementById("date-input");
+const music=document.getElementById("bg-music");
+btn.onclick=()=>{
+if(["04.07.2025","4.7.2025"].includes(input.value.trim())){
+gate.classList.add("hidden");
+document.body.classList.add("unlocked");
+music.play();
+setTimeout(()=>gate.remove(),1000);
+}else{
+document.getElementById("error-msg").innerText="Yanlış tarih";
+}
+};
+
+const obs=new IntersectionObserver(e=>{
+e.forEach(i=>i.isIntersecting&&i.target.classList.add("visible"))
+},{threshold:.2});
+document.querySelectorAll(".chapter").forEach(c=>obs.observe(c));
+</script>
+
 </body>
 </html>
